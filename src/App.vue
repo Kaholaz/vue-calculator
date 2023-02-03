@@ -1,47 +1,62 @@
-<script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
-</script>
-
-<template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
-  </header>
-
-  <main>
-    <TheWelcome />
-  </main>
+<template style="height: 100%">
+  <div class="calculator">
+    <ResultsComponent />
+    <ACComponent />
+    <CComponent />
+    <SignComponent />
+    <OperatorComponent value="/" />
+    <NumberComponent value="7" />
+    <NumberComponent value="8" />
+    <NumberComponent value="9" />
+    <OperatorComponent value="*" />
+    <NumberComponent value="4" />
+    <NumberComponent value="5" />
+    <NumberComponent value="6" />
+    <OperatorComponent value="-" />
+    <NumberComponent value="1" />
+    <NumberComponent value="2" />
+    <NumberComponent value="3" />
+    <OperatorComponent value="+" />
+    <NumberComponent id="zero" value="0" />
+    <AddDotComponent />
+    <EqualsComponent />
+  </div>
 </template>
 
+<script setup>
+import SignComponent from "@/components/SignComponent.vue";
+import OperatorComponent from "@/components/OperatorComponent.vue";
+import NumberComponent from "@/components/NumberComponent.vue";
+import EqualsComponent from "@/components/EqualsComponent.vue";
+import AddDotComponent from "@/components/AddDotComponent.vue";
+import ACComponent from "@/components/ACComponent.vue";
+import CComponent from "@/components/CComponent.vue";
+import ResultsComponent from "@/components/ResultsComponent.vue";
+</script>
+
 <style scoped>
-header {
-  line-height: 1.5;
+.calculator {
+  display: grid;
+  grid-template-columns: repeat(4, 25%);
+  grid-template-rows: repeat(6, calc(100% / 6));
+  height: 100%;
 }
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
+.calculator > div {
+  font-size: x-large;
+  border: 1px solid beige;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
+#display {
+  grid-column-start: 1;
+  grid-column-end: 5;
+}
 
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
+#zero {
+  grid-column-start: 1;
+  grid-column-end: 3;
 }
 </style>
