@@ -1,37 +1,36 @@
 <template>
   <div id="display">
-    <div id="top">{{ calculator.isResult ? "" : result }}</div>
+    <div id="top">{{ props.isResult ? "" : result }}</div>
     <div id="operator">
-      {{ calculator.isResult ? "" : calculator.operator }}
+      {{ props.isResult ? "" : props.operator }}
     </div>
-    <div id="bottom">{{ calculator.isResult ? result : current }}</div>
+    <div id="bottom">{{ props.isResult ? result : current }}</div>
   </div>
 </template>
 
 <script setup>
-import { useCalculatorStore } from "@/stores/calculatorStore";
 import { computed } from "vue";
 
+const props = defineProps(["result", "current", "operator", "isResult", "clearOnDigit"]);
+
 const result = computed(() => {
-  if (calculator.result === "") {
+  if (props.result === "") {
     return "";
   }
 
-  if (!isFinite(calculator.result)) {
+  if (!isFinite(props.result)) {
     return "ERROR";
   }
 
-  return calculator.result;
+  return props.result;
 });
 
 const current = computed(() => {
-  if (calculator.clearOnDigit) {
+  if (props.clearOnDigit) {
     return "";
   }
-  return calculator.current;
+  return props.current;
 });
-
-const calculator = useCalculatorStore();
 </script>
 
 <style scoped>
@@ -41,8 +40,18 @@ const calculator = useCalculatorStore();
   grid-template-rows: repeat(2, 50%);
 }
 
-#top {
-  font-size: large;
+#display > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#top, #operator {
+  font-size: x-large;
+}
+
+#bottom {
+  font-size: xxx-large;
 }
 
 #top,
