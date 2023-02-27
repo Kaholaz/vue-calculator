@@ -11,7 +11,13 @@
 <script setup>
 import { computed } from "vue";
 
-const props = defineProps(["result", "current", "operator", "isResult", "clearOnDigit"]);
+const props = defineProps([
+  "result",
+  "current",
+  "operator",
+  "isResult",
+  "clearOnDigit",
+]);
 
 const result = computed(() => {
   if (props.result === "") {
@@ -38,6 +44,7 @@ const current = computed(() => {
   display: grid;
   grid-template-columns: 25% 50% 25%;
   grid-template-rows: repeat(2, 50%);
+  overflow-x: hidden;
 }
 
 #display > div {
@@ -46,7 +53,8 @@ const current = computed(() => {
   align-items: center;
 }
 
-#top, #operator {
+#top,
+#operator {
   font-size: x-large;
 }
 

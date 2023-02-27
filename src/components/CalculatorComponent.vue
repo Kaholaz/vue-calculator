@@ -1,4 +1,5 @@
 <template>
+  <LogComponent :log="log" :visible="logVisible" @click="toggleLog" />
   <div id="calculator">
     <ResultsComponent
       id="display"
@@ -7,6 +8,7 @@
       :isResult="isResult"
       :clearOnDigit="clearOnDigit"
       :operator="operator"
+      @click="toggleLog"
     />
     <div
       v-for="button in buttons"
@@ -21,7 +23,9 @@
 </template>
 
 <script setup>
+import { ref } from "vue";
 import ResultsComponent from "@/components/ResultsComponent.vue";
+import LogComponent from "@/components/LogComponent.vue";
 
 class Button {
   constructor(label, onAciton, cls, id) {
@@ -66,10 +70,10 @@ const buttons = [
   new Button("=", execute, "operation"),
 ];
 
-import { ref } from "vue";
-
 const current = ref("");
 const result = ref("");
+const log = ref([]);
+const logVisible = ref(false);
 
 const operator = ref("");
 const doExecute = ref(false); // Can change operator multiple times without calculating a result
@@ -116,7 +120,7 @@ function setOperator(op) {
 }
 
 function execute() {
-  if (!current.value || clearOnDigit.value) return;
+  if (!doExecute.value) return;
   clearOnDigit.value = true;
   isResult.value = true;
 
@@ -125,9 +129,12 @@ function execute() {
     return;
   }
 
+  let toLog = `${result.value} ${operator.value} ${current.value} = `;
   result.value = eval(
     `${result.value}${operator.value}${current.value}`
   ).toString();
+  toLog += result.value;
+  log.value.unshift(toLog);
 }
 
 function clear() {
@@ -148,6 +155,10 @@ function clearCurrent() {
 
   current.value = "";
   hasDot.value = false;
+}
+
+function toggleLog() {
+  logVisible.value = !logVisible.value;
 }
 </script>
 

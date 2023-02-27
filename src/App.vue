@@ -16,4 +16,8 @@ import CalculatorComponent from "@/components/CalculatorComponent.vue";
   grid-column-start: 1;
   grid-column-end: 3;
 }
+
+#app {
+  box-sizing: border-box;
+}
 </style>
