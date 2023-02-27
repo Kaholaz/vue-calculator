@@ -121,20 +121,34 @@ function setOperator(op) {
 
 function execute() {
   if (!doExecute.value) return;
-  clearOnDigit.value = true;
-  isResult.value = true;
 
   if (operator.value === "") {
+    clearOnDigit.value = true;
+    isResult.value = true;
     result.value = current.value;
     return;
   }
 
   let toLog = `${result.value} ${operator.value} ${current.value} = `;
-  result.value = eval(
-    `${result.value}${operator.value}${current.value}`
-  ).toString();
-  toLog += result.value;
-  log.value.unshift(toLog);
+  fetch("http://localhost:8080/calculate", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      a: result.value,
+      b: current.value,
+      operator: operator.value,
+    }),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      result.value = data.result;
+      toLog += result.value;
+      log.value.unshift(toLog);
+      clearOnDigit.value = true;
+      isResult.value = true;
+    });
 }
 
 function clear() {
