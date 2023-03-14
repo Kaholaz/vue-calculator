@@ -1,7 +1,8 @@
 <template>
-  <LogComponent :log="log" :visible="logVisible" @click="toggleLog" />
   <div id="calculator">
+    <LogComponent v-if="logVisible" :log="log" @click="toggleLog" />
     <ResultsComponent
+      v-else
       id="display"
       :result="result"
       :current="current"

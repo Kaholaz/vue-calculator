@@ -1,23 +1,16 @@
 <template style="height: 100%">
-  <CalculatorComponent />
+  <HeaderComponent />
+  <RouterView style="height: 100%;"/>
 </template>
 
 <script setup>
-import CalculatorComponent from "@/components/CalculatorComponent.vue";
+import { RouterView } from "vue-router";
+import HeaderComponent from "@/components/HeaderComponent.vue";
 </script>
 
-<style scoped>
-#display {
-  grid-column-start: 1;
-  grid-column-end: 5;
-}
-
-#zero {
-  grid-column-start: 1;
-  grid-column-end: 3;
-}
-
+<style>
 #app {
-  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
 }
 </style>

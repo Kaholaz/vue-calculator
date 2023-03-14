@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper" v-if="props.visible">
+  <div class="wrapper">
     <p v-for="(item, index) in props.log" :key="index">
       {{ item }}
     </p>
@@ -9,22 +9,20 @@
 <script setup>
 const props = defineProps({
   log: Array,
-  visible: Boolean,
 });
 </script>
 
 <style scoped>
 .wrapper {
   padding: 10px;
-  height: 200px;
   width: 100%;
-
-  position: absolute;
-  z-index: 1;
 
   flex-direction: column;
   text-align: right;
   background-color: gray;
   overflow-x: scroll;
+
+  grid-column-start: 1;
+  grid-column-end: 5;
 }
 </style>
