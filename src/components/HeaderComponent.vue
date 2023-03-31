@@ -1,8 +1,8 @@
 <template>
-    <header>
-        <RouterLink to="/">Calculator</RouterLink>
-        <RouterLink to="/login">Log in</RouterLink>
-    </header>
+  <header>
+    <RouterLink to="/">Calculator</RouterLink>
+    <RouterLink to="/login">Log in</RouterLink>
+  </header>
 </template>
 
 <script setup>
@@ -11,21 +11,21 @@ import { RouterLink } from "vue-router";
 
 <style scoped>
 header {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
 a {
-    font-size: large;
+  font-size: large;
 
-    padding: 5px;
-    margin: 10px;
-    border-radius: 5px;
+  padding: 5px;
+  margin: 10px;
+  border-radius: 5px;
 
-    color: gainsboro;
-    background-color: darkred;
-    text-decoration: none;
+  color: gainsboro;
+  background-color: darkred;
+  text-decoration: none;
 }
 </style>

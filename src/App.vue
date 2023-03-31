@@ -1,6 +1,6 @@
 <template style="height: 100%">
   <HeaderComponent />
-  <RouterView style="height: 100%;"/>
+  <RouterView style="height: 100%" />
 </template>
 
 <script setup>
